@@ -1,0 +1,7 @@
+!.gitignore
+
+bootstrap/
+database/
+public/
+storage/
+vendor/

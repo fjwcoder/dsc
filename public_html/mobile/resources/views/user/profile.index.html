@@ -1,0 +1,315 @@
+{include file="page_header"}
+<section class="b-color-f  my-nav-box">
+	<a href="javascript:;">
+		<div class="s-user-top">
+			<div class="user-bg-box-1">
+				<img src="{elixir('img/user-1.png')}">
+			</div>
+			<div class="user-bg2-box-1"><img src="{elixir('img/user-2.png')}"></div>
+			<div class="dis-box s-xian-box s-user-top-1 p-r">
+				<img src="" alt="" id="userimg" />
+				<h3 class="box-flex text-all-span my-u-title-size s-user-img">头像</h3>
+				<div class="box-flex t-goods1 text-right onelist-hidden jian-top" for="logo">
+					<input id="headimg" type="file" class="user-profile-img" style="opacity: 0" />
+					<div class="user-img fr">
+					{if $info.user_picture !=='' }
+					<div class="user-head-img-box-1"><img src="{$info.user_picture}"></div>
+                    {else}
+                    <div class="user-head-img-box-1"><img src="{elixir('img/no_image.jpg')}"></div>
+                    {/if}
+                    </div>
+				</div>
+			</div>
+
+		</div>
+	</a>
+
+	<div class="s-user-top onclick-nickname">
+		<div class="dis-box s-xian-box s-user-top-1">
+			<h3 class="box-flex text-all-span my-u-title-size">用户名</h3>
+			<div id="nickname" class="box-flex t-goods1 text-right onelist-hidden jian-top">{$user_name}</div>
+			<span class="t-jiantou"><i class="iconfont icon-jiantou tf-180 jian-top"></i></span>
+		</div>
+	</div>
+	<div class="s-user-top onclick-sex">
+		<div class="dis-box s-xian-box s-user-top-1">
+			<h3 class="box-flex text-all-span my-u-title-size">性别</h3>
+
+			<div id="sex" class="box-flex t-goods1 text-right onelist-hidden jian-top">{$info.sex}</div>
+
+			<span class="t-jiantou"><i class="iconfont icon-jiantou tf-180 jian-top"></i></span>
+		</div>
+	</div>
+	<!-- <a href="{url('user/profile/user_edit_mobile')}"> -->
+		<div class="s-user-top onclick-mobile">
+			<div class="dis-box s-user-top-1">
+				<h3 class="box-flex text-all-span my-u-title-size">手机</h3>
+				{if $info.mobile_phone ==''}
+					<div class="box-flex t-goods1 text-right onelist-hidden jian-top fjw-add-mobile-input">未绑定</div>
+				{else}
+					<div class="box-flex t-goods1 text-right onelist-hidden jian-top fjw-add-mobile-input">{$info.mobile_phone}</div>
+				{/if}
+				<span class="t-jiantou"><i class="iconfont icon-jiantou tf-180 jian-top"></i></span>
+			</div>
+		</div>
+	<!-- </a> -->
+	<!-- <a href="{url('user/profile/user_edit_email')}"> -->
+		<div class="s-user-top onclick-email">
+			<div class="dis-box s-user-top-1">
+				<h3 class="box-flex text-all-span my-u-title-size">邮箱</h3>
+                                         {if $info.email ==''}
+				<div class="box-flex t-goods1 text-right onelist-hidden jian-top fjw-add-email-input">未绑定</div>
+                                        {else}
+                                        <div class="box-flex t-goods1 text-right onelist-hidden jian-top fjw-add-email-input">{$info.email}</div>
+                                        {/if}
+				<span class="t-jiantou"><i class="iconfont icon-jiantou tf-180 jian-top"></i></span>
+			</div>
+		</div>
+	<!-- </a> -->
+</section>
+<section class="b-color-f my-nav-box m-top10">
+	<a href="{url('user/index/edit_password')}">
+		<div class="s-user-top">
+			<div class="dis-box s-user-top-1">
+				<h3 class="box-flex text-all-span my-u-title-size">修改密码</h3>
+				<span class="t-jiantou"><i class="iconfont icon-jiantou tf-180 jian-top"></i></span>
+			</div>
+		</div>
+	</a>
+	<a href="{url('index/addresslist')}">
+		<div class="s-user-top">
+			<div class="dis-box s-user-top-1">
+				<h3 class="box-flex text-all-span my-u-title-size">收货地址</h3>
+				<span class="t-jiantou"><i class="iconfont icon-jiantou tf-180 jian-top"></i></span>
+			</div>
+		</div>
+	</a>
+	<a href="{url('user/profile/realname')}">
+		<div class="s-user-top">
+			<div class="dis-box s-user-top-1">
+				<h3 class="box-flex text-all-span my-u-title-size">实名认证</h3>
+				<span class="t-jiantou"><i class="iconfont icon-jiantou tf-180 jian-top"></i></span>
+			</div>
+		</div>
+	</a>
+</section>
+{if !$is_wechat}
+<div class="ect-button-more padding-all">
+    <a class="btn-submit box-flex br-5 min-two-btn" type="button" href="{url('user/login/logout')}">退出</a>
+</div>
+{/if}
+<!--modify by fjw in 18.4.23：修改手机号码 -->
+<div class="my-sex-box fjw-modify-nickname-box">
+		<div class="flow-consignee margin-lr">
+			<section class="user-center margin-lr">
+				<div class="b-color-f  user-login-ul">
+					<div class="text-all dis-box j-text-all login-li">
+						<div class="input-text box-flex">
+							<input class="j-input-text nickname" id="focus"  maxlength="32" name="nickname" {if $info.nick_name}value="{$info.nick_name}"{else}placeholder="请输入昵称"{/if}  />
+							<i class="iconfont icon-guanbi1 close-common j-is-null"></i>
+						</div>
+					</div>
+				</div>
+				<div class="ect-button-more dis-box m-top12 updata-top my-sex-close fjw-modify-my-nickname-close">
+					<button id="btn-modify-nickname"  class="btn-submit box-flex br-5 min-two-btn" type="submit" value="submit">确定修改</button>
+				</div>
+					
+			</section>
+		</div>
+	</div>
+<!--updata-admin-->
+<div class="my-sex-box fjw-modify-sex-box">
+	<div class="flow-consignee margin-lr">
+			<ul class="g-s-i-title-3 dis-box text-center user-sex">
+				<li class="box-flex  sex-default-color">
+					<a href="javascript:;" class="{if $user_sex == 1}active{/if}">
+						<i class="iconfont icon-nan my-sex-size" ></i>
+                    	<input type="radio" name="sex" value="1"/><h4 class="ellipsis-one f-03">男</h4>
+					</a>
+				</li>
+				<li class="box-flex sex-default-color" >
+					<a href="javascript:;" class="sex-nv {if $user_sex == 2}active{/if}">
+						<i class="iconfont icon-nv my-sex-size" ></i>
+                      	<input type="radio" name="sex" value="2"/><h4 class="ellipsis-one f-03">女</h4>
+					</a>
+				<li>
+			</ul>
+			<div class="ect-button-more dis-box m-top12 updata-top fjw-modify-my-sex-close">
+              <button  class="btn-submit box-flex br-5 min-two-btn" type="submit" value="submit">确定</button>
+			</div>
+	</div>
+</div>
+
+<!--modify by fjw in 18.4.23：修改手机号码 -->
+<div class="my-sex-box fjw-modify-mobile-box">
+		<div class="flow-consignee margin-lr">
+			<section class="user-center margin-lr">
+				<div class="b-color-f  user-login-ul">
+					<div class="text-all dis-box j-text-all login-li">
+						<div class="input-text box-flex">
+							<input class="j-input-text mobile" id="focus"  maxlength="11" name="mobile" {if $info.mobile_phone}value="{$info.mobile_phone}"{else}placeholder="请输入手机号"{/if}  />
+							<i class="iconfont icon-guanbi1 close-common j-is-null"></i>
+						</div>
+					</div>
+				</div>
+				<div class="ect-button-more dis-box m-top12 updata-top my-sex-close fjw-modify-my-mobile-close">
+					<button id="btn-modify-mobile"  class="btn-submit box-flex br-5 min-two-btn" type="submit" value="submit">确定修改</button>
+				</div>
+					
+			</section>
+		</div>
+	</div>
+<!--modify by fjw in 18.4.23：修改邮箱 -->
+<div class="my-sex-box fjw-modify-email-box">
+		<div class="flow-consignee margin-lr">
+			<section class="user-center margin-lr">
+				<div class="b-color-f  user-login-ul">
+					<div class="text-all dis-box j-text-all login-li">
+						<div class="input-text box-flex">
+							<input class="j-input-text email" id="focus"  maxlength="32" name="email" {if $info.email}value="{$info.email}"{else}placeholder="请输邮箱"{/if}  />
+							<i class="iconfont icon-guanbi1 close-common j-is-null"></i>
+						</div>
+					</div>
+				</div>
+				<div class="ect-button-more dis-box m-top12 updata-top my-sex-close fjw-modify-my-email-close">
+					<button id="btn-modify-email"  class="btn-submit box-flex br-5 min-two-btn" type="submit" value="submit">确定修改</button>
+				</div>
+					
+			</section>
+		</div>
+	</div>
+<script>
+	// modify by fjw in 18.4.23
+	$(function($) { 
+		// 修改性别
+		$(".onclick-sex").click(function() {
+			$(".fjw-modify-sex-box").addClass("current");
+		});
+		$(".fjw-modify-my-sex-close").click(function() {
+			$(".fjw-modify-sex-box").removeClass("current");
+		});
+		
+		// 修改手机号
+		$(".onclick-mobile").click(function(){
+			$(".fjw-modify-mobile-box").addClass("current");
+		})
+		
+		$(".fjw-modify-my-mobile-close").click(function() {
+			$(".fjw-modify-mobile-box").removeClass("current");
+		});
+
+		// 修改邮箱
+		$(".onclick-email").click(function(){
+			$(".fjw-modify-email-box").addClass("current");
+		})
+		
+		$(".fjw-modify-my-email-close").click(function() {
+			$(".fjw-modify-email-box").removeClass("current");
+		});
+		
+		// 修改昵称
+		$(".onclick-nickname").click(function(){
+			$(".fjw-modify-nickname-box").addClass("current");
+		})
+		
+		$(".fjw-modify-my-nickname-close").click(function() {
+			$(".fjw-modify-nickname-box").removeClass("current");
+		});
+
+	});
+
+	// add by fjw in 18.4.23: 增加修改昵称
+	$('#btn-modify-nickname').click(function(){
+		var nickname = $("input[name='nickname']").val();
+		$.post("{url('user/profile/modifynickname')}",{nickname:nickname},function(data){
+			console.log(data);
+			$("#nickname").text(data.nick_name);
+		},"json");
+	});
+	// add by fjw in 18.4.23: 增加修改手机号
+	$('#btn-modify-mobile').click(function(){
+		var mobile = $("input[name='mobile']").val();
+		$.post("{url('user/profile/modifymobile')}",{mobile:mobile},function(data){
+			$(".fjw-add-mobile-input").text(data.mobile_phone);
+		},"json");
+	});
+
+	// add by fjw in 18.4.23: 增加修改邮箱
+	$('#btn-modify-email').click(function(){
+		var email = $("input[name='email']").val();
+		$.post("{url('user/profile/modifyemail')}",{email:email},function(data){
+			$(".fjw-add-email-input").text(data.email);
+		},"json");
+	});
+
+
+
+	$(function() {
+		$('.sex-default-color').click(function() {
+			for (var i = 0; i < $('.sex-default-color').size(); i++) {
+				if (this == $('.sex-default-color').get(i)) {
+					$('.sex-default-color').eq(i).children('a').addClass('active');
+				} else {
+					$('.sex-default-color').eq(i).children('a').removeClass('active');
+				}
+			}
+		})
+	})
+
+$(".user-sex").click(function(){
+	var sex = $(".active input[name='sex']").val();
+
+	$.post("{url('user/profile/editprofile')}",{sex:sex},function(data){
+		$("#sex").text(data.sex);
+	},"json");
+
+})
+{if $is_wechat == 0}
+/* 修改头像*/
+$('.user-head-img-box-1 img').click(function(){
+	$('#headimg').click();
+});
+$('#headimg').change(function(e){
+	var file = e.target.files[0];
+	var form = new FormData();
+	var max_size = 1024000 * 2;
+	if(file.size > max_size) {
+    layer.open({
+      content: "上传的图片不能超过2MB!",
+      time: 2,
+      end: function (){
+        window.location.reload();
+        return false;
+      }
+    });
+  }
+
+	form.append('img', file);
+
+	var xhr;
+	if(window.ActiveXObject)
+	{
+		xhr = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	else if(window.XMLHttpRequest)
+	{
+		xhr = new XMLHttpRequest();
+	}
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4){
+			if(xhr.status == 200 || xhr.status == 0){
+				var res = xhr.responseText;
+				res = JSON.parse(res);
+				if(res.error == 0){
+					$('.user-head-img-box-1 img').attr('src', '../' + res.path);
+				}
+			}
+		}
+	};
+	xhr.open("post", "{url('changeheader')}", true);
+	xhr.send(form);
+});
+{/if}
+</script>
+</body>
+</html>

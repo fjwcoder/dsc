@@ -1,0 +1,7 @@
+!.gitignore
+
+font/
+help/
+images/
+styles/
+templates/

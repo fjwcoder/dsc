@@ -1,0 +1,112 @@
+{include file="page_header"}
+
+<div class="con b-color-f" >
+    <form action="{url('realname')}" method="post" class="form-horizontal" role="form" onSubmit="return false;">
+        <section class="j-f-tel margin-lr">
+            <div class="text-all dis-box j-text-all bank_card">
+                <label>真实姓名</label>
+                <div class="box-flex input-text">
+                    <input class="j-input-text inputcard" type="text" name="data[real_name]" placeholder="真实姓名" value="{$real_user.real_name}" />
+                    <i class="iconfont icon-guanbi1 close-common j-is-null"></i>
+                </div>
+            </div>
+            <div class="text-all dis-box j-text-all bank_user_name">
+                <label>身份证号</label>
+                <div class="box-flex input-text">
+                    <input class="j-input-text inputcard" type="text" name="data[self_num]" placeholder="身份证号" value="{$real_user.self_num}" />
+                    <i class="iconfont icon-guanbi1 close-common j-is-null"></i>
+                </div>
+            </div>
+            <div class="text-all dis-box j-text-all bank_region">
+                <label>银行</label>
+                <div class="box-flex input-text">
+                    <input class="j-input-text inputcard" type="text" name="data[bank_name]" placeholder="如:工商银行上海XXX路支行" value="{$real_user.bank_name}" />
+                    <i class="iconfont icon-guanbi1 close-common j-is-null"></i>
+                </div>
+            </div>
+            <div class="text-all dis-box j-text-all bank_name">
+                <label>银行卡号</label>
+                <div class="box-flex input-text">
+                    <input class="j-input-text inputcard" type="text" name="data[bank_card]" placeholder="银行卡号" value="{$real_user.bank_card}" />
+                    <i class="iconfont icon-guanbi1 close-common j-is-null"></i>
+                </div>
+            </div>
+            <div class="text-all dis-box j-text-all bank_name">
+                <label>手机号码</label>
+                <div class="box-flex input-text">
+                    <input class="j-input-text inputcard" type="tel" name="mobile_phone" placeholder="手机号码" value="{$real_user.bank_mobile}" />
+                    <i class="iconfont icon-guanbi1 close-common j-is-null"></i>
+                </div>
+            </div>
+            <div class="text-all dis-box j-text-all bank_name">
+                <label>短信验证码</label>
+                <div class="box-flex input-text">
+                    <input class="j-input-text inputcard" type="number" name="mobile_code" placeholder="短信验证码" />
+                    <i class="iconfont icon-guanbi1 close-common j-is-null"></i>
+                </div>
+                <button type="button" class="box-flex btn-submit j-submit-phone br-5">获取验证码</button>
+            </div>
+            <input type="hidden" name="step" value="{$step}" />
+            <input type="hidden" name="real_id" value="{$real_user.real_id}" />
+            <input type="submit" value="{if $step == 'first'}同意实名认证协议并确定{else}提交{/if}" class="btn-submit br-5" />
+        </section>
+    </form>
+</div>
+    <!--快捷导航-->
+    {include file="float_nav"}
+                <li>
+                    <a href="{url('realnameok')}">
+                         <i class="iconfont icon-qudiandianpumingpianicon"></i>
+                         <p>认证详情</p>
+                    </a>
+                </li>
+    {include file="float_nav_footer"}
+<script type="text/javascript">
+$(function(){
+    // 提交表单
+    $(".form-horizontal").submit(function(){
+        // 验证数据
+        var label_name = '';
+        $(".inputcard").each(function(){
+            if($(this).val() == ''){
+                label_name = $(this).parent().parent().find('label').html();
+                d_messages('请输入完整的'+ label_name);
+                return false;
+            }
+        });
+
+        // 异步提交
+        var ajax_data = $(".form-horizontal").serialize();
+        $.post("{url('realname')}", ajax_data, function(data){
+            if(data.status == 0){
+                d_messages(data.msg);
+                window.location.href = "{url('realnameok')}";
+            }else{
+                d_messages(data.msg);
+                return false;
+            }
+        }, 'json');
+    });
+
+    // 获取验证码
+    $('.j-submit-phone').click(function(){
+        var phoneNum = $('input[name=mobile_phone]').val();
+        if(phoneNum == ''){
+            d_messages('请填写手机号码');
+            return false;
+        }
+        $.ajax({
+            url : "{url('realnamesend')}",
+            data :　{mobile:phoneNum},
+            type : 'post',
+            dataType : 'json',
+            success : function(data){
+                d_messages(data.content, 2);
+            }
+        });
+    });
+
+});
+</script>
+</body>
+</html>

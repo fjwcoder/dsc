@@ -1,0 +1,14 @@
+<?php
+// by bbs.52jscn.com   禁止倒卖 一经发现停止任何服务
+namespace app\models;
+
+class MerchantsDocumenttitle extends \Illuminate\Database\Eloquent\Model
+{
+	protected $table = 'merchants_documenttitle';
+	protected $primaryKey = 'dt_id';
+	public $timestamps = false;
+	protected $fillable = array('dt_title', 'cat_id');
+	protected $guarded = array();
+}
+
+?>
